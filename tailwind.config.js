@@ -19,4 +19,4 @@ module.exports = {
     plugins: [require('@tailwindcss/forms')],
 };
 
-//bidon
+//cest bido
