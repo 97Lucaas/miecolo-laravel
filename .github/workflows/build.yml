@@ -1,0 +1,24 @@
+name: Build on staging
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          composer install
+          npm install
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git config push.default current
+          git checkout -b build/main
+          npm run build
+          git add .
+          git commit -m "build"
+          git push origin build/main --force
