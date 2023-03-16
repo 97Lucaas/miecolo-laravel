@@ -56,7 +56,7 @@
                 document.getElementById("tbodylb").innerHTML += "<tr> <td>"+o.name+"</td> <td>"+o.score+"</td> </tr>";
             });
             }
-//bul
+//bulkda,
 
             /*
             fetch('/Increment',{
