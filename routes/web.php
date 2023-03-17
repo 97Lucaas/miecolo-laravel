@@ -39,4 +39,8 @@ Route::get('/jeu', function () {
     return view('jeu');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 require __DIR__.'/auth.php';

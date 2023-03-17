@@ -31,7 +31,6 @@ button {
     border: none;
     font-size: 25px;
     font-weight: bold;
-
 }
 
 li {
@@ -383,7 +382,7 @@ span {
 /* ////////////////////////// FOOTER \\\\\\\\\\\\\\\\\\\\\\\\\*/
 
 footer{
-    height: 500px;
+    height: 400px;
 }
 
 .top{
@@ -561,6 +560,14 @@ footer{
     font-weight: bold;
 }
 
+
+.bottom-prdt{
+    margin-bottom: 35px;
+    margin-left: -10px;
+    width: 391.46px;
+    height: 349.3px;
+    background: none;
+}
 .flex_img{
     display: flex;
     flex-direction: column;
@@ -569,17 +576,78 @@ footer{
     margin-top: 116px;
 }
 
+
+.le_p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.plus{
+    width: 20px;
+    height: 32px;
+    margin: 10px;
+}
+
+.moins{
+    width: 20px;
+    height: 26px;
+    margin: 10px;
+}
+
+.flex_quant{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: -30px;
+    margin-left: 10px;
+}
+.flex_quant_2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: -30px;
+    margin-left: 10px;
+}
+
 .submit-produit{
     /* padding: 7.75px 10.85px; */
     width: 221px;
     height: 50px;
-    margin-top: 35px;
+    margin-top: 15px;
+    margin-left: 10px;
     border: 0.775px solid #D0D5DD;
     box-shadow: 0px 0.775px 1.55px rgba(16, 24, 40, 0.05);
     border-radius: 6.2px;
     font-size: 20px;
+    color: #FFFFFF;
+    background: #86C6B5;
+}
+.submit-voir{
+    width: 221px;
+    height: 50px;
+    margin-top: 428px;
+    border: 0.775px solid #86C6B5;
+    box-shadow: 0px 0.775px 1.55px rgba(16, 24, 40, 0.05);
+    border-radius: 6.2px;
+    font-size: 20px;
+    color: #86C6B5;
+    background: white;
 }
 
+
+.submit-voir_2{
+    width: 221px;
+    height: 50px;
+    margin-top: 395px;
+    border: 0.775px solid #86C6B5;
+    box-shadow: 0px 0.775px 1.55px rgba(16, 24, 40, 0.05);
+    border-radius: 6.2px;
+    font-size: 20px;
+    color: #86C6B5;
+    background: white;
+}
 .butt_tech{
     background-color: white ;
     font-size: 20px;
@@ -600,7 +668,8 @@ footer{
     flex-direction: column;
     margin-top: 116px;
     width: 693px;
-    margin-left: 75px;
+    margin-left: 100px;
+    margin-bottom: 116px;
 }
 
 .bloc_ajout{
@@ -610,31 +679,35 @@ footer{
     left: 590px;
     top: 752px;
 
-    border: 1px solid #86C6B5;
-    filter: drop-shadow(0px 4px 4px #86C6B5);
+    border: 0.775px solid #D0D5DD;
+    box-shadow: 0px 0.775px 1.55px rgba(16, 24, 40, 0.05);
     border-radius: 10px;
 }
 .flex_titre{
     display: flex;
     flex-direction: row;
     margin-left: 10px;
-    
 }
+
 .prix{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     margin-top: 10px;
-
-color: rgba(0, 0, 0, 0.5);
+    margin-left: 20px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .position_txt{
     position: absolute;
-    margin-top: 319px;
-    width: 700px;
-    margin-left:55px;;
+    margin-top: 80px;
+    width:  573px;
+    /* margin-left:55px;; */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
 }
 
 .fond{
@@ -661,6 +734,10 @@ color: rgba(0, 0, 0, 0.5);
     margin-left: 25% ;
  }
 
+ .z-encore{
+    position: absolute;
+    z-index: 1;
+ }
 .concours {
     position: relative;
     /* background-color: #86C6B5; */
@@ -686,6 +763,7 @@ color: rgba(0, 0, 0, 0.5);
     border-radius: 0.5rem;
     padding: 3rem 30%;
     margin: 4rem 0;
+    margin-bottom: 20px;
 }
 
 .concours p {
@@ -721,6 +799,195 @@ color: rgba(0, 0, 0, 0.5);
     background-color: rgba(255, 255, 255, 0.642);
     box-shadow: 0px 4px 9px 6px rgba(0, 0, 0, 0.25);
 }
+
+
+/* ////////////////////////// INFOS \\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.infos-img {
+    position: absolute;
+}
+
+.infos-title {
+    margin: 0 4rem;
+    margin-top: 2rem;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+
+    padding-right: 2rem;
+    width: fit-content;
+
+    position: relative;
+    left: 100%;
+    transform: translateX(-150%);
+}
+
+.infos-title h1 {
+    text-align: right;
+}
+
+.infos-title p {
+    text-align: right;
+}
+
+.infos-wrapper {
+    position: relative;
+    top: -6rem;
+}
+
+
+.infos-wrapper p {
+    margin: 0 5rem;
+}
+
+.infos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 7rem;
+    margin: 5rem 3rem;
+    min-height: 171px;
+
+    background-color: white;
+
+    box-shadow: #86c6b52d 18px 16px 0px 0px;
+    border: solid #86C6B5 3px;
+    border-radius: 0.5rem;
+    padding: 2rem 2rem;
+
+    gap: 2rem;
+    text-align: center;
+}
+
+.infos button {
+    height: fit-content;
+    color: white;
+
+    position: relative;
+}
+
+.infos button a {
+    color: white;
+}
+
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+}
+
+.info p {
+    margin: unset;
+    max-width: 12rem;
+}
+
+
+
+.conclu {
+    display: flex;
+    justify-content: space-around;
+}
+
+.conclu-left {
+    display: flex;
+    gap: 2rem;
+}
+
+.conclu-left img {
+    height: 15rem;
+}
+
+.conclu button {
+    margin-top: 3rem;
+}
+
+.conclu button a {
+    color: white;
+    font-size: 20px;
+}
+
+.conclu-title p {
+    margin: 0;
+}
+
+
+.conclu-right {
+    display: flex;
+    gap: 2rem;
+}
+
+.conclu-right img {
+    transform: scaleX(-100%);
+    height: 15rem;
+}
+
+.conclu-right h1 {
+    text-align: right;
+}
+
+.conclu-right p {
+    text-align: right;
+}
+
+.conclu-right button {
+    position: relative;
+    left: 100%;
+    transform: translateX(-100%);
+}
+
+
+/* ////////////////////////// CONTACT \\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+.contact-img{
+    position: absolute;
+}
+
+.contact-title{
+    position: relative;
+    width: fit-content;
+
+    margin-top: 5rem;
+    margin-left: 5rem;
+
+    background-color: white;
+}
+
+.contact-wrapper{
+    background-color: #DDA1CC;
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    padding: 2rem;
+
+    border-radius: 0.5rem;
+    height: fit-content;
+}
+
+.contact-content{
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 2rem;
+}
+
+.contact-content img{
+    transform: scaleX(-100%);
+}
+
+
+.contact-wrapper h1{
+    color: white;
+}
+.contact-wrapper p{
+    color: white;
+    margin-top: 3rem;
+    font-weight: normal;
+}
+
 
 /* //////////////////////////////////////// DO NOT TOUCH //////////////////////////////////////////// */
 /* /////////////////////////////////////// LARAVEL STYLE //////////////////////////////////////////// */
