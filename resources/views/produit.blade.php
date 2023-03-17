@@ -1,5 +1,8 @@
 <x-app-layout> 
 
+
+
+
 <div class="fond">
     <img class="fond_gri" src="../assets/img/appel jeu concours.png">
     <h1 class="juste_choix">Le <i>juste</i> choix<p class="blanc_sous_titre">(sans vouloir nous jeter des fleurs...)</p></h1>
@@ -13,7 +16,7 @@
             poids...
         </p>
 
-        <button class="concours-button"> <a href="">Jouer</a></button>
+        <button class="concours-button"> <a href="{{ url('jeu') }}">Jouer</a></button>
     </section>
     <section class="concours-wrapper-back">
         <p>Clic, clic, clic, vous êtes juste </p>
@@ -21,7 +24,7 @@
         <p>À défaut de gagner au loto, tentez de remporter une de nos <br> balance connectées en trouvant le juste
             poids...
         </p>
-        <button class="concours-button"> <a href="">Jouer</a></button>
+        <button class="concours-button"> <a href="{{ url('jeu') }}">Jouer</a></button>
     </section>
 </section>
 </div>
@@ -67,9 +70,9 @@
         <img class="z_encore" src="../assets/img/Group 138.png" alt="">
         <p class="prix"> à partir de 265€ TTC</p>
     <div class="flex_quant_2">
-        <img class="plus" src="../assets/img/-.png"> 
-        <p class="le_p">  Quantité : <span>0</span> </p> 
-        <img class="moins" src="../assets/img/--1.png">
+        <img class="plus" id="plus" style="pointer-events: all;" onclick="Plus()" src="../assets/img/-.png">
+        <p class="le_p">  Quantité : <span id="count">0</span> </p> 
+        <img class="moins" id="moins" style="pointer-events: all;" onclick="Moins()" src="../assets/img/--1.png">
     </div>
         <input class="submit-produit" type="submit" value="Ajouter au panier" class="butt_panier">
     </section>
