@@ -31,4 +31,8 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/Increment', [Increment::class, 'update'])->name('update-value');
 
+Route::get('/produit', function () {
+    return view('produit');
+});
+
 require __DIR__.'/auth.php';
