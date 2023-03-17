@@ -4,10 +4,13 @@
     <section class="jeu">
         <section class="menuWrapper">
             <section class="menu">
-                <section class="explication">
-                    Trouvez le juste poids
-                </section>
-                <button onclick="startGame()"> JOUER </button>
+                <section class="explication_game">
+                <h2>Le juste Poids</h2>
+                Tentez de remporter une balance principale connectée en jouant au juste poids. Le but ? Trouver le poids de la ruche le plus rapidement possible. Pour cela, placez les différents pots de miel de l’autre côté de la balance pour trouver le juste équilibre.
+                <br/>
+                <br/>
+Alors ? Vous pensez pouvoir faire mieux que notre balance ?                </section>
+                <button class="button_game"onclick="startGame()"> Tenter ma chance </button>
             </section>
         </section>
         <section class="menuWrapperFin">
@@ -106,8 +109,10 @@ var edgeRight = Bodies.rectangle(xPlateau + xOffSeteR, yPlateau + yOffSet, wSqua
     yScale: 1
   }}} ); // bord droit de la balance
 
-  var edgeELeft = Bodies.rectangle(xPlateau + xOffSeteR, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render: {fillStyle: 'black'}}); // bord gauche de la balance
-  var edgeERight = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render:{fillStyle: 'black'}} ); // bord gauche de la balance
+  var edgeELeft = Bodies.rectangle(xPlateau + xOffSeteR, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render: {fillStyle: 'transparent'}}); // bord gauche de la balance
+  var edgeRLeft = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render: {fillStyle: 'transparent'}}); // bord gauche de la balance
+  var edgeERight = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render:{fillStyle: 'transparent'}} ); // bord gauche de la balance
+  var edgeRRight = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render:{fillStyle: 'transparent'}} ); // bord gauche de la balance
 
 
 // sol
@@ -174,8 +179,10 @@ Composite.add(world, [
     herbe,
     plateau,
     edgeLeft,
-    // edgeELeft,
-    // edgeERight,
+    edgeELeft,
+    edgeRLeft,
+    edgeERight,
+    edgeRRight,
     edgeRight,
 
     // poids1,
@@ -230,7 +237,7 @@ Composite.add(world, [
         bodyA: edgeELeft,
         stiffness: 1, // raideur elasticité max 2 décroché min  
         length: 0, // disrtance entre le point d'encrage et le centre de gravité
-        mass:9
+        mass:0
     }),
 
     Constraint.create({
@@ -239,7 +246,25 @@ Composite.add(world, [
         bodyA: edgeERight,
         stiffness: 1, // raideur elasticité max 2 décroché min  
         length: 0, // disrtance entre le point d'encrage et le centre de gravité
-        mass:9
+        mass:0
+    }),
+
+    Constraint.create({
+        bodyB: edgeLeft, // sur quoi porte la contrainte
+        pointB: { x: xOffSeteR +15, y: yOffSet },
+        bodyA: edgeRLeft,
+        stiffness: 1, // raideur elasticité max 2 décroché min  
+        length: 0, // disrtance entre le point d'encrage et le centre de gravité
+        mass:0
+    }),
+
+    Constraint.create({
+        bodyB: edgeLeft, // sur quoi porte la contrainte
+        pointB: { x: xOffSeteL -15, y: yOffSet },
+        bodyA: edgeRRight,
+        stiffness: 1, // raideur elasticité max 2 décroché min  
+        length: 0, // disrtance entre le point d'encrage et le centre de gravité
+        mass:0
     })
 
 ]);
@@ -280,6 +305,8 @@ function Animate() {
     Matter.Body.setInertia(edgeLeft, Infinity)
     Matter.Body.setInertia(edgeELeft, Infinity)
     Matter.Body.setInertia(edgeERight, Infinity)
+    Matter.Body.setInertia(edgeRLeft, Infinity)
+    Matter.Body.setInertia(edgeRRight, Infinity)
     Matter.Body.setInertia(edgeRight, Infinity)
     Matter.Body.setInertia(ruche, Infinity)
     Matter.Body.setAngularVelocity(edgeLeft, 0)
