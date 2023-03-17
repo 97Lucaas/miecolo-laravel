@@ -57,10 +57,11 @@ font-size: 50px;
     justify-content: center;
 }
 
-.menu{
+.menu_game{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .menuWrapperFin{

@@ -3,7 +3,7 @@
 
     <section class="jeu">
         <section class="menuWrapper">
-            <section class="menu">
+            <section class="menu_game">
                 <section class="explication_game">
                 <h2>Le juste Poids</h2>
                 Tentez de remporter une balance principale connectée en jouant au juste poids. Le but ? Trouver le poids de la ruche le plus rapidement possible. Pour cela, placez les différents pots de miel de l’autre côté de la balance pour trouver le juste équilibre.
