@@ -11,7 +11,7 @@
                 <button> <x-responsive-nav-link :href="route('profile.edit')"> Jeu Concours </x-responsive-nav-link> </button>
             </li>
             <li>
-                <x-responsive-nav-link :href="route('profile.edit')"> Le produit </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{url('/produit')}}"> Le produit </x-responsive-nav-link>
             </li>
             <li>
                 <x-responsive-nav-link :href="route('profile.edit')"> Parler à un conseiller </x-responsive-nav-link>

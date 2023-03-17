@@ -1,3 +1,5 @@
+<x-app-layout> 
+
 <div class="fond">
     <img class="fond_gri" src="/assets/appel jeu concours.png">
     <h1 class="juste_choix">Le <i>juste</i> choix<p class="blanc_sous_titre">(sans vouloir nous jeter des fleurs...)</p></h1>
@@ -56,3 +58,5 @@ Pour connecter votre balance principale aux réseaux, un abonnement de 3€ HT/m
     </div>
 </div>
 </section>
+
+</x-app-layout> 
