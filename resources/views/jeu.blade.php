@@ -1,6 +1,4 @@
 <x-app-layout> 
-
-
     <section class="jeu">
         <section class="menuWrapper">
             <section class="menu_game">
@@ -22,14 +20,12 @@ Alors ? Vous pensez pouvoir faire mieux que notre balance ?                </sec
             </section>
         </section>
     </section>
-    <p> ?</p>
 
 </x-app-layout>
 
+<!-- Script JS DU JEU -->
 <script>
-
-//{{ asset("assets/img/jeu/balance1.png") }}
-
+    
 // Initialisation Matter.js
 
 var Engine = Matter.Engine,
@@ -44,19 +40,19 @@ var Engine = Matter.Engine,
     Mouse = Matter.Mouse,
     Vector = Matter.Vector;
 
-// create engine
+// Creation de engine
 var engine = Engine.create(),
     world = engine.world;
 
-// create renderer
+// Creation de renderer
 var render = Render.create({
     element: document.querySelector(".jeu"),
     engine: engine,
-    options: {
+    options: { 
         width: window.innerWidth,
         background: '#BFDFF0',
-        height: 600,
-        wireframes: false,       // false pour afficher les textures
+        height: 600, 
+        wireframes: false,       // False pour afficher les textures
     }
 });
 
@@ -73,15 +69,12 @@ var collisionMask = 3
 var ignoreMask = 8
 var herbeMask = 16
 
-
+// Intervalle du poids de la ruche
 var weight = randomIntFromInterval(17, 40)
-// if (randomIntFromInterval(0, 1) == 0) {
-//     weight += 0.5
-// }
-console.log(weight)
 
-// plateau de la balance
-// Bodies.rectangle(xCentre, yCentre, largeur, hauteur[, options])
+// console.log(weight)
+
+// Plateau principal de la balance
 var xPlateau = 380;
 var yPlateau = 520;
 var wPlateau = 400;
@@ -92,12 +85,13 @@ var plateau = Bodies.rectangle(xPlateau, yPlateau, wPlateau, hPlateau, { collisi
     yScale: 0.8
   } } })
 
-// Composites.group()
+// Composant des deux plateaux de la balance
 var wSquare = 200;
 var hSquare = 10;
 var xOffSeteL = -wPlateau / 2 + wSquare / 2;
 var xOffSeteR = +wPlateau / 2 - wSquare / 2;
 var yOffSet = -hPlateau / 2 - hSquare / 2;
+
 var edgeLeft = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, wSquare, hSquare, { collisionFilter: { mask: clickableMask }, render: {sprite: {
     texture: '{{ asset("assets/img/jeu/plateau.png") }}',
     xScale: 1,
@@ -109,70 +103,82 @@ var edgeRight = Bodies.rectangle(xPlateau + xOffSeteR, yPlateau + yOffSet, wSqua
     yScale: 1
   }}} ); // bord droit de la balance
 
+  // Bordure des bords de la balance
   var edgeELeft = Bodies.rectangle(xPlateau + xOffSeteR, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render: {fillStyle: 'transparent'}}); // bord gauche de la balance
-  var edgeRLeft = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render: {fillStyle: 'transparent'}}); // bord gauche de la balance
+  var edgeRLeft = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render: {fillStyle: 'transparent'}}); // bord droit de la balance
   var edgeERight = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render:{fillStyle: 'transparent'}} ); // bord gauche de la balance
-  var edgeRRight = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render:{fillStyle: 'transparent'}} ); // bord gauche de la balance
+  var edgeRRight = Bodies.rectangle(xPlateau + xOffSeteL, yPlateau + yOffSet, 10, 45, {mass: 0, collisionFilter: { mask: clickableMask }, render:{fillStyle: 'transparent'}} ); // bord droit de la balance
 
 
-// sol
+// Sol
 var ground = Bodies.rectangle(window.innerWidth / 2, 600, window.innerWidth, 50.5, { collisionFilter: { category: collisionMask }, isStatic: true, render: { fillStyle: '#86C6B5', opacity: 1 } });
 
-let millisStart;
+// Déclaration de variables pour le jeu
+let millisStart; 
 let milliEnd;
 let score = 0;
 let asWon = false;
 
-// options
-// { 
-//     isStatic: true, 
-//     collisionFilter: { group: group }, // supprime les collisions entres les élements du groupe
-//     render: { fillStyle: '#ff0000' }
-// }
+// Déclaration des poids
 
-var poids1 = Bodies.rectangle(window.innerWidth - 50, 50, 20, 25, { mass: 0.5, collisionFilter: { category: collisionMask | clickableMask }, render: { sprite: {
-    texture: '{{ asset("assets/img/jeu/pot0_5.svg") }}',
-    xScale: 0.25,
-    yScale: 0.25
-  }}}); 
+// var poids1 = Bodies.rectangle(window.innerWidth - 50, 50, 20, 25, { mass: 0.5, collisionFilter: { category: collisionMask | clickableMask }, render: { sprite: {
+//     texture: '{{ asset("assets/img/jeu/pot0_5.svg") }}',
+//     xScale: 0.25,
+//     yScale: 0.25
+//   }}}); 
+// Poids trop faible donc qui n'influe pas sur la balance 
+
+// 1kg
 var poids2 = Bodies.rectangle(window.innerWidth - 50, 150, 30, 35, { mass: 1, collisionFilter: { category: collisionMask | clickableMask }, render: { sprite: {
     texture: '{{ asset("assets/img/jeu/pot1.svg") }}',
     xScale: 0.28,
     yScale: 0.28
   } } }); 
+
+// 2kg
 var poids3 = Bodies.rectangle(window.innerWidth - 50, 250, 40, 40, { mass: 2, collisionFilter: { category: collisionMask | clickableMask }, render: {sprite: {
     texture: '{{ asset("assets/img/jeu/pot2.svg") }}',
     xScale: 0.30,
     yScale: 0.30
   } } }); 
+
+// 5kg
 var poids4 = Bodies.rectangle(window.innerWidth - 50, 350, 50, 50, { mass: 5, collisionFilter: { category: collisionMask | clickableMask }, render: { sprite: {
     texture: '{{ asset("assets/img/jeu/pot5.svg") }}',
     xScale: 0.35,
     yScale: 0.35
   } } }); 
+
+// 10kg
 var poids5 = Bodies.rectangle(window.innerWidth - 50, 450, 60, 60, { mass: 10, collisionFilter: { category: collisionMask | clickableMask }, render: { sprite: {
     texture: '{{ asset("assets/img/jeu/pot10.svg") }}',
     xScale: 0.38,
     yScale: 0.38
   }}}); 
 
-var etagere1 = Bodies.rectangle(window.innerWidth - 50, 100, 100, 10, { isStatic: true, collisionFilter: { category: collisionMask }, render: { fillStyle: 'transparent' } }); 
+
+// Support des poids 
+
+//var etagere1 = Bodies.rectangle(window.innerWidth - 50, 100, 100, 10, { isStatic: true, collisionFilter: { category: collisionMask }, render: { fillStyle: 'transparent' } }); 
 var etagere2 = Bodies.rectangle(window.innerWidth - 50, 190, 100, 10, { isStatic: true, collisionFilter: { category: collisionMask }, render: { fillStyle: 'transparent' } }); 
 var etagere3 = Bodies.rectangle(window.innerWidth - 50, 290, 100, 10, { isStatic: true, collisionFilter: { category: collisionMask }, render: { fillStyle: 'transparent' } }); 
 var etagere4 = Bodies.rectangle(window.innerWidth - 50, 390, 100, 10, { isStatic: true, collisionFilter: { category: collisionMask }, render: { fillStyle: 'transparent' } }); 
 var etagere5 = Bodies.rectangle(window.innerWidth - 50, 500, 100, 10, { isStatic: true, collisionFilter: { category: collisionMask }, render: { fillStyle: 'transparent' } }); 
 
+// Décoration 
 var herbe = Bodies.rectangle(860, 545, 100, 70, { isStatic: true, collisionFilter: { category: herbeMask }, render: { sprite: {
     texture: '{{ asset("assets/img/jeu/herbe.png") }}',
     xScale: 0.50,
     yScale: 0.50
   }}});
 
+// Ruche avec un poids aléatoire 
+
 var ruche = Bodies.rectangle(xPlateau, yPlateau-200, 150, 150, { mass: weight, collisionFilter: { category: collisionMask, mask: collisionMask}, render: { sprite: {
     texture: '{{ asset("assets/img/jeu/ruche.png") }}',
     xScale: 0.50,
     yScale: 0.40
-  }}}); // poidss 1
+  }}});
 
 Composite.add(world, [
     ground,
@@ -191,7 +197,7 @@ Composite.add(world, [
     poids4,
     poids5,
 
-    etagere1,
+    // etagere1,
     etagere2,
     etagere3,
     etagere4,
@@ -206,11 +212,12 @@ Composite.add(world, [
         yScale: 1
       } } }),
 
-    // Bodies.circle(560, 100, 50, { density: 0.005 }),
+
+    // Initialisation contrainte
 
     Constraint.create({
         bodyA: plateau, // sur quoi porte la contrainte
-        pointB: Vector.clone(plateau.position), // ??? le point d'encrage (xCentre, yCentre)
+        pointB: Vector.clone(plateau.position), //le point d'encrage (xCentre, yCentre)
         stiffness: .2, // raideur elasticité max 2 décroché min  
         length: 0 // disrtance entre le point d'encrage et le centre de gravité
     }),
@@ -252,7 +259,7 @@ Composite.add(world, [
     Constraint.create({
         bodyB: edgeLeft, // sur quoi porte la contrainte
         pointB: { x: xOffSeteR +15, y: yOffSet },
-        bodyA: edgeRLeft,
+        bodyA: edgeRLeft, // objet avec la contraite
         stiffness: 1, // raideur elasticité max 2 décroché min  
         length: 0, // disrtance entre le point d'encrage et le centre de gravité
         mass:0
@@ -284,10 +291,9 @@ var mouse = Mouse.create(render.canvas),
 
 Composite.add(world, mouseConstraint);
 
-// keep the mouse in sync with rendering
 render.mouse = mouse;
 
-
+// Fonction animate 
 Animate();
 
 function Animate() {
@@ -295,12 +301,15 @@ function Animate() {
     //Position de la ruche
     Matter.Body.setPosition(ruche, Matter.Vector.create(xPlateau + xOffSeteL*1.45, ruche.position.y))
 
+    // Mis à jour du score dans la fonction animate
     if (plateau.angle < -0.02) {
         Matter.Body.setAngle(plateau, plateau.angle + 0.01)
 
     } else if (plateau.angle > 0.02) {
         Matter.Body.setAngle(plateau, plateau.angle - 0.01)
     }
+
+    // Set de l'inertie des composants
 
     Matter.Body.setInertia(edgeLeft, Infinity)
     Matter.Body.setInertia(edgeELeft, Infinity)
@@ -309,6 +318,9 @@ function Animate() {
     Matter.Body.setInertia(edgeRRight, Infinity)
     Matter.Body.setInertia(edgeRight, Infinity)
     Matter.Body.setInertia(ruche, Infinity)
+
+    // Verification du mouvement des plateaux
+
     Matter.Body.setAngularVelocity(edgeLeft, 0)
     Matter.Body.setAngularVelocity(edgeRight, 0)
 
@@ -363,17 +375,20 @@ function Animate() {
         ])
     }
 
+    //Appel de la fonction pour la mis à jour du score
     majScore();
 
+    // Exécution de l'animation
     window.requestAnimationFrame(Animate);
 
 }
 
-function randomIntFromInterval(min, max) { // min and max included 
+// Nombre aléatoire pour le poids de la ruche 
+function randomIntFromInterval(min, max) { 
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-
+// Mis à jour du score dans la fonction animate
 function majScore() {
     if (-0.02 < plateau.angle && plateau.angle < 0.02) {
 
@@ -387,6 +402,7 @@ function majScore() {
     }
 }
 
+// Fonction début du jeu pour mettre un flou et démararrer le timer au clic
 function startGame() {
     let menu = document.querySelector(".menuWrapper")
     let canvas = document.querySelector("canvas")
@@ -399,9 +415,12 @@ function startGame() {
     startTimer();
 }
 
+// Start du timer 
 function startTimer() {
     millisStart = Date.now();
 }
+
+// Fonction fin du jeu pour remettre le flou et afficher le temps
 
 function endGame() {
     let menuFin = document.querySelector(".menuWrapperFin")
@@ -421,9 +440,10 @@ function endGame() {
     canvas.style.filter = "blur(100px)"
     canvas.style.pointerEvents = "none"
 
-    expliFin.innerHTML = "Bravo, vous avez deviné que la balance pesait " + weight + "kg en " + milliEnd / 1000 + " secondes !"
+    expliFin.innerHTML = "Bravo, vous avez deviné que la balance pesait " + weight + "kg en " + milliEnd / 1000 + " secondes ! Avec les balances connectées Miecolo, c'est instantané ;)"
 }
 
+// Refresh de la page
 function reload() {
     window.location.reload();
 }
