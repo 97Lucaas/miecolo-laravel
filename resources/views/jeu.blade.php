@@ -23,7 +23,7 @@ Alors ? Vous pensez pouvoir faire mieux que notre balance ?                </sec
 
 </x-app-layout>
 
-<!-- Script JS DU JEU -->
+<!-- Script JS DU JEU FAIT PAR FRANCIA ET AIDÉ PAR CAMILLE -->
 <script>
     
 // Initialisation Matter.js
